@@ -21,5 +21,16 @@ def books():
         else:
             'Nothing Found', 404
 
+    if request.method == 'POST':    
+        new_title = request.form['title']
+        iD = book_list[-1]['id']+1
+
+        new_obj = {
+            'id':iD,
+            'title':new_title
+        }
+        book_list.append(new_obj)
+        return jsonify(book_list), 201
+
 if __name__ == '__main__':
     app.run(debug=True)
